@@ -1,0 +1,19 @@
+version: '1'
+services: 
+  plex:
+    container_name: plex
+      # image: linuxserver/plex
+    image: plexinc/pms-docker
+    volumes:
+      - ${HOME}/plex/config:/config
+      - ${HOME}/plex/series:/series
+      - ${HOME}/plex/movies:/movies
+      - ${HOME}/plex/transcode:/transcode
+    restart: unless-stopped
+    environment:
+      - PLEX_CLAIM=YOUR CLAIM KEY
+      - VERSION=latest
+      - PLEX_UID=1000
+      - PLEX_GID=1000
+      - TZ=Europe/Dublin  
+    network_mode: "host"
